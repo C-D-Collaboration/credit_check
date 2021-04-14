@@ -1,13 +1,12 @@
 class CreditCard
+  attr_reader :card_number,
+              :limit
+
   def initialize(card_number, limit)
     @card_number = card_number
     @limit = limit
   end
   
-  def limit
-    @limit
-  end
-
   def is_valid?
     doubled_nums = @card_number.chars.reverse.map.with_index do |num, index|
       if index%2 == 1
@@ -24,5 +23,9 @@ class CreditCard
     end.sum
     # check if sum is divisible by 10
     return doubled_nums % 10 == 0
+  end
+
+  def last_four
+    @card_number[-4..-1]
   end
 end
